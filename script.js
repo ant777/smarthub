@@ -13,13 +13,14 @@ console.warn(window.notificationEmail);
 })
 // sendEmail();
 
-async function sendEmail(text) {
+async function sendEmail(text, title) {
     // code fragment
     var data = {
         service_id: window.emailAPIService.value,
         template_id: window.emailAPITemplate.value,
         user_id: window.emailAPIKey.value,
         template_params: {
+            'title': title || 'Низкая температура',
             'email': window.notificationEmail.value,
             'text': text
         }
@@ -184,6 +185,11 @@ function miAction() {
                         lastSentDate = Date.now();
                         localStorage.setItem('lastSent', lastSentDate)
                         sendEmail(temp + '°C');
+                    } else if (window.notificationSchedule.checked && Date.now() - lastSentDate > 2*60*60*1000) {
+                        console.warn('sent email');
+                        lastSentDate = Date.now();
+                        localStorage.setItem('lastSent', lastSentDate)
+                        sendEmail(temp + '°C', 'Текущая температура');
                     }
                     var tempTempString = "Temp/Humi: " + temp + "°C / " + hum + "%";
                     document.getElementById("tempHumiData").innerHTML = tempTempString;
