@@ -1,3 +1,5 @@
+//import { RTC } from "./rtc";
+
 console.warn(window.notificationEmail);
 ['notificationEmail', 'emailAPIService', 'emailAPITemplate', 'emailAPIKey']
 .forEach((key) => {
@@ -12,6 +14,8 @@ console.warn(window.notificationEmail);
     }
 })
 // sendEmail();
+
+//new RTC();
 
 async function sendEmail(text, title) {
     // code fragment
@@ -59,7 +63,7 @@ var settingsCharacteristics;
 var miEnabled = false,
     miConnected = false,
     mode_activation;
-fw_version_value = "";
+let fw_version_value = "";
 //Login values
 var mi_random_key, mi_random_key_recv, mi_device_info_recv, mi_device_info_send, device_known_id, expected_device_infos, is_logged_in = false;
 //Activation values
@@ -70,6 +74,7 @@ function resetFileSelector() {
     document.getElementById("file").value = '';
 };
 
+let busy = false;   
 function resetVariables() {
     busy = false;
     gattServer = null;
@@ -134,7 +139,7 @@ function connect() {
         doConnect();
     }).catch(handleError);
 }
-
+window.connect = connect;
 function catchAdvertisement(device) {
     const abortController = new AbortController();
     device.addEventListener('advertisementreceived', (event) => {
@@ -180,12 +185,12 @@ function miAction() {
                     if (sign) temp = temp - 32767;
                     temp = temp / 100;
                     var hum = value.getUint8(2);
-                    if (temp < parseFloat(window.tempThreshold.value) && Date.now() - lastSentDate > 60*60*1000) {
+                    if (temp < parseFloat(window.tempThreshold.value) && Date.now() - lastSentDate > 2*60*60*1000) {
                         console.warn('sent email');
                         lastSentDate = Date.now();
                         localStorage.setItem('lastSent', lastSentDate)
                         sendEmail(temp + '°C');
-                    } else if (window.notificationSchedule.checked && Date.now() - lastSentDate > 2*60*60*1000) {
+                    } else if (window.notificationSchedule.checked && Date.now() - lastSentDate > 6*60*60*1000) {
                         console.warn('sent email');
                         lastSentDate = Date.now();
                         localStorage.setItem('lastSent', lastSentDate)

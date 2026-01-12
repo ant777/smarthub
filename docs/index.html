@@ -1,21 +1,16 @@
-
-<!-- Copyright: Aaron Christophel / Atc1441 https://atcnetz.de -->
-<html class="telFlasherClass">
-
-<head>
+<!-- Copyright: Aaron Christophel / Atc1441 https://atcnetz.de --><html class="telFlasherClass"><head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SmartHub</title>
-    <script type="text/javascript" src="./index.js"></script>
+    <script src="/smarthub.2fd0bd96.js"></script>
 </head>
 
 <body>
     <button type="button" onclick="connect();">Connect</button>
     <button type="button" onclick="reConnect();">Reconnect</button><br>
-    <div style="display: none;"><big><big>Telink Flasher for Mi Thermostat</big></big><br>
+    <div style="display: none"><big><big>Telink Flasher for Mi Thermostat</big></big><br>
     Copyright: Aaron Christophel / Atc1441 <a href="https://atcnetz.de">https://ATCnetz.de</a><br>
-    <a href="https://youtu.be/NXKzFG61lNs">Video Manual</a> <a
-        href="https://github.com/atc1441/ATC_MiThermometer">Custom firmware repo</a><br><br>
+    <a href="https://youtu.be/NXKzFG61lNs">Video Manual</a> <a href="https://github.com/atc1441/ATC_MiThermometer">Custom firmware repo</a><br><br>
     <label for="hideUnknown">Hide unknown</label>
     <input type="checkbox" id="hideUnknown"><br>
     <label for="namePrefix">BLE device name prefix filter(s)</label>
@@ -25,21 +20,21 @@
     <button type="button" onclick="startDFU();">Start Flashing</button>
     <button type="button" onclick="clearLog();">Clear Log</button><br><br>
     Please select a .bin file you want to flash to a Telink BLE device.<br><br>
-    Select Firmware: <input type="file" accept=".bin" id="file" onclick="resetFileSelector();" /><br>
+    Select Firmware: <input type="file" accept=".bin" id="file" onclick="resetFileSelector();"><br>
     <div id="percent">Status: waiting for you to connect a device</div>
     <hr>
     <hr></div>
 
-    <div id="tempHumiData" style="color: blue;font-size: 3em;">Temp/Humi: waiting for data</div>
-    <label for="tempThreshold">Warning temperature: </label><input type="text" placeholder="tempThreshold" id="tempThreshold" value="21"/><br/>
-    <label for="notificationEmail">Email: </label><input type="email" id="notificationEmail"/><br/>
-    <label for="notificationSchedule">Send on schedule: </label><input type="checkbox" id="notificationSchedule"/><br/>
-    <label for="emailAPIService">Email sender API service: </label><input type="text" id="emailAPIService"/><br/>
-    <label for="emailAPITemplate">Email sender API template: </label><input type="text" id="emailAPITemplate"/><br/>
-    <label for="emailAPIKey">Email sender API token: </label><input type="text" id="emailAPIKey"/>
+    <div id="tempHumiData" style="color: #00f; font-size: 3em">Temp/Humi: waiting for data</div>
+    <label for="tempThreshold">Warning temperature: </label><input type="text" placeholder="tempThreshold" id="tempThreshold" value="21"><br>
+    <label for="notificationEmail">Email: </label><input type="email" id="notificationEmail"><br>
+    <label for="notificationSchedule">Send on schedule: </label><input type="checkbox" id="notificationSchedule"><br>
+    <label for="emailAPIService">Email sender API service: </label><input type="text" id="emailAPIService"><br>
+    <label for="emailAPITemplate">Email sender API template: </label><input type="text" id="emailAPITemplate"><br>
+    <label for="emailAPIKey">Email sender API token: </label><input type="text" id="emailAPIKey">
 
 
-<div style="display: none;">  
+<div style="display: none">  
     <div id="MAC">#enable-experimental-web-platform-features may be needed to read MAC</div>
     <hr>
     Device known id:<br>
@@ -53,8 +48,7 @@
     <hr>
     Send settings to custom firmware:<br>
     <input type="text" id="cmdTXT" value="">
-    <button type="button"
-        onclick="sendCustomSetting(document.getElementById(&quot;cmdTXT&quot;).value,settingsCharacteristics);">Send</button>
+    <button type="button" onclick="sendCustomSetting(document.getElementById(&quot;cmdTXT&quot;).value,settingsCharacteristics);">Send</button>
     <br><br>
     Settings:
     <button type="button" onclick="sendCustomSetting(&quot;DF&quot;);">Save current settings in flash</button>
@@ -112,69 +106,69 @@
 
             <div>
                 Byte0:
-                <input type="checkbox" id="check00">0</input>
-                <input type="checkbox" id="check01">1</input>
-                <input type="checkbox" id="check02">2</input>
-                <input type="checkbox" id="check03">3</input>
-                <input type="checkbox" id="check04">4</input>
-                <input type="checkbox" id="check05">5</input>
-                <input type="checkbox" id="check06">6</input>
-                <input type="checkbox" id="check07">7</input>
+                <input type="checkbox" id="check00">0
+                <input type="checkbox" id="check01">1
+                <input type="checkbox" id="check02">2
+                <input type="checkbox" id="check03">3
+                <input type="checkbox" id="check04">4
+                <input type="checkbox" id="check05">5
+                <input type="checkbox" id="check06">6
+                <input type="checkbox" id="check07">7
             </div>
             <div>
                 Byte1:
-                <input type="checkbox" id="check10">0</input>
-                <input type="checkbox" id="check11">1</input>
-                <input type="checkbox" id="check12">2</input>
-                <input type="checkbox" id="check13">3</input>
-                <input type="checkbox" id="check14">4</input>
-                <input type="checkbox" id="check15">5</input>
-                <input type="checkbox" id="check16">6</input>
-                <input type="checkbox" id="check17">7</input>
+                <input type="checkbox" id="check10">0
+                <input type="checkbox" id="check11">1
+                <input type="checkbox" id="check12">2
+                <input type="checkbox" id="check13">3
+                <input type="checkbox" id="check14">4
+                <input type="checkbox" id="check15">5
+                <input type="checkbox" id="check16">6
+                <input type="checkbox" id="check17">7
             </div>
             <div>
                 Byte2:
-                <input type="checkbox" id="check20">0</input>
-                <input type="checkbox" id="check21">1</input>
-                <input type="checkbox" id="check22">2</input>
-                <input type="checkbox" id="check23">3</input>
-                <input type="checkbox" id="check24">4</input>
-                <input type="checkbox" id="check25">5</input>
-                <input type="checkbox" id="check26">6</input>
-                <input type="checkbox" id="check27">7</input>
+                <input type="checkbox" id="check20">0
+                <input type="checkbox" id="check21">1
+                <input type="checkbox" id="check22">2
+                <input type="checkbox" id="check23">3
+                <input type="checkbox" id="check24">4
+                <input type="checkbox" id="check25">5
+                <input type="checkbox" id="check26">6
+                <input type="checkbox" id="check27">7
             </div>
             <div>
                 Byte3:
-                <input type="checkbox" id="check30">0</input>
-                <input type="checkbox" id="check31">1</input>
-                <input type="checkbox" id="check32">2</input>
-                <input type="checkbox" id="check33">3</input>
-                <input type="checkbox" id="check34">4</input>
-                <input type="checkbox" id="check35">5</input>
-                <input type="checkbox" id="check36">6</input>
-                <input type="checkbox" id="check37">7</input>
+                <input type="checkbox" id="check30">0
+                <input type="checkbox" id="check31">1
+                <input type="checkbox" id="check32">2
+                <input type="checkbox" id="check33">3
+                <input type="checkbox" id="check34">4
+                <input type="checkbox" id="check35">5
+                <input type="checkbox" id="check36">6
+                <input type="checkbox" id="check37">7
             </div>
             <div>
                 Byte4:
-                <input type="checkbox" id="check40">0</input>
-                <input type="checkbox" id="check41">1</input>
-                <input type="checkbox" id="check42">2</input>
-                <input type="checkbox" id="check43">3</input>
-                <input type="checkbox" id="check44">4</input>
-                <input type="checkbox" id="check45">5</input>
-                <input type="checkbox" id="check46">6</input>
-                <input type="checkbox" id="check47">7</input>
+                <input type="checkbox" id="check40">0
+                <input type="checkbox" id="check41">1
+                <input type="checkbox" id="check42">2
+                <input type="checkbox" id="check43">3
+                <input type="checkbox" id="check44">4
+                <input type="checkbox" id="check45">5
+                <input type="checkbox" id="check46">6
+                <input type="checkbox" id="check47">7
             </div>
             <div>
                 Byte5:
-                <input type="checkbox" id="check50">0</input>
-                <input type="checkbox" id="check51">1</input>
-                <input type="checkbox" id="check52">2</input>
-                <input type="checkbox" id="check53">3</input>
-                <input type="checkbox" id="check54">4</input>
-                <input type="checkbox" id="check55">5</input>
-                <input type="checkbox" id="check56">6</input>
-                <input type="checkbox" id="check57">7</input>
+                <input type="checkbox" id="check50">0
+                <input type="checkbox" id="check51">1
+                <input type="checkbox" id="check52">2
+                <input type="checkbox" id="check53">3
+                <input type="checkbox" id="check54">4
+                <input type="checkbox" id="check55">5
+                <input type="checkbox" id="check56">6
+                <input type="checkbox" id="check57">7
             </div>
             <button type="button" onclick="mapper_send()">Send bytes</button><br>
         </div>
@@ -182,7 +176,8 @@
     <div id="log">Log:<br></div>
     <div id="result"></div>
     
-    <script src="./script.js" type="module"></script>
-</body>
+    <script src="/smarthub.01f8a744.js" type="module"></script>
 
-</html>
+
+
+</body></html>
