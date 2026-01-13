@@ -163,6 +163,7 @@ function catchAdvertisement(device) {
     }, { once: true });
 }
 
+
 let lastSentDate = +localStorage.getItem('lastSent');
 function miAction() {
     gattServer.getPrimaryService('ebe0ccb0-7a0a-4b0c-8a1a-6ff2997da3a6')
